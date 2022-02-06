@@ -20,7 +20,8 @@ let onErrorListener,onInfoUpdates2Listener,	onNewEventsListener;
 let currentGame;
 let gameState = {
     matchState: null,
-    playerName: null
+    playerName: null,
+    gameMode: null
 }
 
 function updateGameStateWithInfo(info) {
@@ -35,6 +36,9 @@ function updateGameStateWithInfo(info) {
             case 'match_state':
                 gameState.matchState = game_state.gamestate_value
                 didUpdate = true
+                break
+            case 'game_mode':
+                gameState.gameMode = game_state.gamestate_value
                 break
             case 'ultimate_cooldown':
                 didUpdate = true // TODO: ignore this for now
@@ -78,7 +82,7 @@ function registerEvents() {
                 return // EARLY RETURN
             }
             if (match_event.event_value === 'match_start') {
-                currentGame = new Match(gameState.playerName)
+                currentGame = new Match(gameState)
             }
             currentGame.saveEvent(match_event)
             if (match_event.event_value === 'match_end') {

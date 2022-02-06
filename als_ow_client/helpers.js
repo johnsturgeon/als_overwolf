@@ -1,6 +1,7 @@
 class Match {
-    constructor(player_name) {
-        this.player_name = player_name
+    constructor(game_state) {
+        this.player_name = game_state.playerName
+        this.game_mode = game_state.gameMode
         this.match_start_timestamp = Math.floor(Date.now() / 1000)
         this.match_end_timestamp = null
         this.match_events = []
@@ -58,6 +59,15 @@ function gameStateFromInfo(info) {
             game_state.gamestate_type = 'match_state'
             game_state.gamestate_value = jsonOrString(info['info']['game_info']['match_state'])
             break
+        case 'match_info':
+            // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_info
+            // {"info":{"match_info":{"game_mode":"#PL_CAN_TRIO"}},"feature":"match_info"}
+            let match_info = info['info']['match_info']
+            if('game_mode' in match_info) {
+                game_state.gamestate_type = 'game_mode'
+                game_state.gamestate_value = match_info['game_mode']
+            }
+            break
         case 'me':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#me
             // {"info":{"me":{"name":"GoshDarnedHero"}},"feature":"me"}
@@ -75,9 +85,6 @@ function gameStateFromInfo(info) {
         default:
             game_state = null
     }
-    if(game_state && !game_state.gamestate_value) {
-        console.log("Interesting... got something strange" + JSON.stringify(info))
-    }
     return game_state
 }
 
@@ -93,17 +100,11 @@ function matchEventFromInfo(info) {
             break
         case 'match_info':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_info
-            // {"info":{"match_info":{"game_mode":"#PL_CAN_TRIO"}},"feature":"match_info"}
             // {"info":{"match_info":{"tabs":"{"kills":1,"spectators":0,"teams":11,"players":30,"damage":394,"cash":0}"}},"feature":"match_info"}
-            // {"info":{"match_info":{"pseudo_match_id":"1c67fed5-5f2a-4d80-927e-c1322af57607"}},"feature":"match_info"}
             let match_info = info['info']['match_info']
-            let events = ['game_mode', 'tabs', 'pseudo_match_id']
-            for(let i = 0; i < events.length; i++) {
-                if(events[i] in match_info) {
-                    return_event.event_type = events[i]
-                    return_event.event_value = jsonOrString(match_info[events[i]])
-                    break
-                }
+            if('tabs' in match_info) {
+                return_event.even_type = 'tabs'
+                return_event.event_value = jsonOrString(match_info['tabs'])
             }
             break
         case 'match_summary':
