@@ -103,7 +103,7 @@ function matchEventFromInfo(info) {
             // {"info":{"match_info":{"tabs":"{"kills":1,"spectators":0,"teams":11,"players":30,"damage":394,"cash":0}"}},"feature":"match_info"}
             let match_info = info['info']['match_info']
             if('tabs' in match_info) {
-                return_event.even_type = 'tabs'
+                return_event.event_type = 'tabs'
                 return_event.event_value = jsonOrString(match_info['tabs'])
             }
             break

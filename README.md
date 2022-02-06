@@ -65,3 +65,20 @@ Here are all the different event types and their values
           }
       }
       ```
+* `tabs`: Any time the 'tabs' across the game update, great way to track current place in match
+  * `kills`, `assists`, `spectators`, `teams`, `players`,`damage`,`cash`
+    ```json
+    {
+        "event_timestamp": 1644110359,
+        "event_type": "tabs",
+        "event_value": {
+            "kills": 0,
+            "assists": 0,
+            "spectators": 0,
+            "teams": 20,
+            "players": 45,
+            "damage": 459,
+            "cash": 0
+        }
+    }
+    ```
