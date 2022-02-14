@@ -53,6 +53,17 @@ Here are all the different event types and their values
       "event_type": "match_state_event",
       "event_value": "match_end"
     }
+* `kill`: Player kill
+  * `victim`: String - victim gamertag
+      ```json
+      {
+         "event_timestamp": 1644877157,
+         "event_type": "kill",
+         "event_value": {
+            "victim_name": "[BRUH]HeyImLifeline"
+         }
+      }
+      ```   
 * `location`: Any time the player moves, these come fast and furious, event value:
   * `x`,`y`,`z`: Coordinates
       ```json

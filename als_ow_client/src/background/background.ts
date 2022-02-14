@@ -26,7 +26,7 @@ class BackgroundController {
         // 'damage',
         // 'death',
         // 'inventory',
-        // 'kill',
+        'kill',
         // 'kill_feed',
         'location',
         'match_info',
@@ -84,7 +84,7 @@ class BackgroundController {
                     didUpdate = true
                     break
                 case 'match_state':
-                    this._gameState = game_state.gamestate_value
+                    this._gameState.matchState = game_state.gamestate_value
                     didUpdate = true
                     break
                 case 'game_mode':
@@ -115,6 +115,7 @@ class BackgroundController {
                 return // EARLY RETURN
             }
             if (match_event.event_value === 'match_start') {
+                console.log("Creating new match with gamestate: " + JSON.stringify(this._gameState))
                 this._currentMatch = new Match(this._gameState)
             }
             this._currentMatch.saveEvent(match_event)

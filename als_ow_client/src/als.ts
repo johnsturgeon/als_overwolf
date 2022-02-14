@@ -42,14 +42,23 @@ function emptyMatchEvent() {
 }
 
 export function matchEventFromEvent(event) {
-    // {"name":"match_start","data":""}
     let return_event = emptyMatchEvent()
     switch(event['name']) {
         case 'match_start':
         case 'match_end':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_state
+            // {"name":"match_start","data":""}
             return_event.event_type = 'match_state_event'
             return_event.event_value = event['name']
+            break
+        case 'kill':
+            // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#kill
+            // {"name":"kill","data":"{  "victimName": "`1[LuL] Sladdi #limbo"}"}
+            // {"name":"knockdown","data":"{  "victimName": "`1 Kixfoxn"}"}
+            // {"name":"assist","data":"{  "victimName": "kazikov.qwerty",  "type": "elimination"}"}
+            // type == `elimination`, `knockdown`
+            return_event.event_type = 'kill'
+            return_event.event_value = jsonOrString(event['data'])
             break
         default:
             return_event = null
@@ -137,6 +146,37 @@ export function sendMatchToServer(match) {
     xhr.send(JSON.stringify(match))
 }
 
+const changeCaseOfKey = key => {
+    return key
+        .replace(/\W+/g, " ")
+        .split(/ |\B(?=[A-Z])/)
+        .map(word => word.toLowerCase())
+        .join("_");
+}
+
+const isObject = o => {
+    return o === Object(o) && !Array.isArray(o) && typeof o !== "function"
+}
+
+const changeCase = entity => {
+    if (entity === null) return entity
+
+    if (isObject(entity)) {
+        const changedObject = {}
+        Object.keys(entity).forEach(originalKey => {
+            const newKey = changeCaseOfKey(originalKey)
+            changedObject[newKey] = changeCase(entity[originalKey])
+        });
+        return changedObject
+    } else if (Array.isArray(entity)) {
+        return entity.map(element => {
+            return changeCase(element)
+        })
+    }
+
+    return entity
+}
+
 function jsonOrString(str) {
     let return_value;
     try {
@@ -149,6 +189,9 @@ function jsonOrString(str) {
         })
     } catch (e) {
         return_value = str
+    }
+    if(typeof return_value === 'object') {
+        return_value = changeCase(return_value)
     }
     return return_value
 }
