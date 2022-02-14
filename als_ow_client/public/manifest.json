@@ -1,0 +1,55 @@
+{
+  "manifest_version": 1,
+  "type": "WebApp",
+  "meta": {
+    "name": "Apex Legends Status - Extra Stats",
+    "author": "John Sturgeon",
+    "version": "0.0.1",
+    "minimum-overwolf-version": "0.160.0",
+    "icon": "icons/icon.png",
+    "icon_gray": "icons/icon_gray.png",
+    "description": "Game Events Consumer Sample"
+  },
+  "__TODO__": "JHS: Do I really need 'permissions'",
+  "permissions": [
+    "GameInfo"
+  ],
+  "data": {
+    "start_window": "background",
+    "externally_connectable": {
+      "matches": [
+        "http://192.168.1.175:8822"
+      ]
+    },
+    "force_browser": "user",
+    "windows": {
+      "background": {
+        "file": "background.html",
+        "background_optimization": false,
+        "is_background_page": true
+      }
+    },
+    "game_targeting": {
+      "type": "dedicated",
+      "game_ids": [
+        21566
+      ]
+    },
+    "game_events": [21566],
+    "launch_events": [
+      {
+        "event": "GameLaunch",
+        "event_data": {
+          "game_ids": [
+            21566
+          ]
+        },
+        "start_minimized": false
+      }],
+    "developer": {
+      "enable_auto_refresh": true,
+      "reload_delay": 1000,
+      "filter": "*.*"
+    }
+  }
+}

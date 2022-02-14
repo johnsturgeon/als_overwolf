@@ -13,6 +13,7 @@ The Match JSON will be sent upon the completion of the match, it will have the m
   * "#PL_TRIO"
   * "#PL_Ranked_Leagues"
   * "#SHADOWROYALE_MODE"
+  * "#CONTROL_NAME"
 * `match_start_timestamp`: Unix Timestamp - Start of match
 * `match_end_timestamp`: Unix Timestamp - End of match
 * `match_events`: Array - all match events in order
@@ -29,7 +30,7 @@ Example:
 ```
 
 ### `match_events` Array
-This is an array of events that happened in chronological order.  The basic struction will be:
+This is an array of events that happened in chronological order:
 * `event_timestamp`: Unix Timestamp of event
 * `event_type`: String - [Event Types](#event-types)
 * `event_value`: String or Object (each event type has its own value)
