@@ -1,6 +1,7 @@
 import {
     OWGameListener,
-    OWGamesEvents
+    OWGamesEvents,
+    OWWindow
 } from '@overwolf/overwolf-api-ts';
 
 import AppLaunchTriggeredEvent = overwolf.extensions.AppLaunchTriggeredEvent;
@@ -17,6 +18,7 @@ class BackgroundController {
     private _gameListener: OWGameListener
     private _gameEventsListener: OWGamesEvents
     private _currentMatch: Match
+    private _desktopWindow: OWWindow
     private _gameState = {
         matchState: null,
         playerName: null,
@@ -71,6 +73,8 @@ class BackgroundController {
     public async run() {
         this._gameListener.start();
         this._gameEventsListener.start();
+        this._desktopWindow = new OWWindow('desktop');
+        this._desktopWindow.restore()
 
     }
 

@@ -52,12 +52,14 @@ export function matchEventFromEvent(event) {
             return_event.event_value = event['name']
             break
         case 'kill':
+        case 'knockdown':
+        case 'assist':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#kill
-            // {"name":"kill","data":"{  "victimName": "`1[LuL] Sladdi #limbo"}"}
-            // {"name":"knockdown","data":"{  "victimName": "`1 Kixfoxn"}"}
-            // {"name":"assist","data":"{  "victimName": "kazikov.qwerty",  "type": "elimination"}"}
+            // {"name":"kill","data":"{  "victimName": "`1[LuL] Jim #limbo"}"}
+            // {"name":"knockdown","data":"{  "victimName": "`1 Omar"}"}
+            // {"name":"assist","data":"{  "victimName": "Leila.qwerty",  "type": "elimination"}"}
             // type == `elimination`, `knockdown`
-            return_event.event_type = 'kill'
+            return_event.event_type = event['name']
             return_event.event_value = jsonOrString(event['data'])
             break
         default:
@@ -138,7 +140,7 @@ export function matchEventFromInfo(info) {
 }
 
 export function sendMatchToServer(match) {
-    let url = "http://192.168.1.175:8822/event";
+    let url = "http://192.168.1.219:8822/event";
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url);
     xhr.setRequestHeader("Accept", "application/json");

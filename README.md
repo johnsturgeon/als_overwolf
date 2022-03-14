@@ -54,13 +54,47 @@ Here are all the different event types and their values
       "event_value": "match_end"
     }
 * `kill`: Player kill
-  * `victim`: String - victim gamertag
+  * `victim_name`: String - victim gamertag
       ```json
       {
          "event_timestamp": 1644877157,
          "event_type": "kill",
          "event_value": {
             "victim_name": "[BRUH]HeyImLifeline"
+         }
+      }
+      ```   
+* `knockdown`: Player knockdown
+  * `victim_name`: String - victim gamertag
+      ```json
+      {
+         "event_timestamp": 1644877157,
+         "event_type": "knockdown",
+         "event_value": {
+            "victim_name": "[BRUH]HeyImLifeline"
+         }
+      }
+      ```   
+* `assist`: Player assist
+  * `victim_name`: String - victim gamertag
+  * `type`: String - [`knockdown` / `elimination`]
+      ```json
+      {
+         "event_timestamp": 1644877157,
+         "event_type": "assist",
+         "event_value": {
+            "victim_name": "[BRUH]HeyImLifeline",
+            "type": "knockdown"
+         }
+      }
+      ```   
+      ```json
+      {
+         "event_timestamp": 1644877171,
+         "event_type": "assist",
+         "event_value": {
+            "victim_name": "[BRUH]HeyImLifeline",
+            "type": "elimination"
          }
       }
       ```   

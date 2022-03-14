@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <link rel="stylesheet" href="../../css/general.css" />
+  <link rel="stylesheet" href="../../css/main.css" />
   <link rel="stylesheet" href="../../css/header.css" />
   <link rel="stylesheet" href="../../css/desktop.css" />
   <link rel="stylesheet" href="../../css/modal.css" />
-  <title>Overwolf Sample App - Desktop page</title>
+  <title>Apex Legends Status Companion</title>
 </head>
-
-<body class="desktop">
+<body>
   <!-- -------------------------------- Header ------------------------------- -->
 
-  <header id="header" class="app-header">
-    <img src="../../img/header_icon.svg" />
-    <h1>Sample App / desktop window</h1>
+  <header>
+    <img id="header_icon" src="../../icons/als_icon.svg" />
+    <h1>Apex Legends Status Companion</h1>
     <div class="window-controls-group">
-      <button id="minimizeButton" class="window-control window-control-minimize" />
-      <button id="maximizeButton" class="window-control window-control-maximize" />
-      <button id="closeButton" class="window-control window-control-close" />
+      <button id="minimizeButton" class="window-control window-control-minimize"></button>
+      <button id="maximizeButton" class="window-control window-control-maximize"></button>
+      <button id="closeButton" class="window-control window-control-close"></button>
     </div>
   </header>
 
   <!-- --------------------------------- Main -------------------------------- -->
   <main>
     <div class="desktopTop">
-      <h1>Overwolf Sample App</h1>
+      <h1>Apex Legends Status API Companion App</h1>
       <p>
-        Welcome to the Overwolf tutorial app for developers.<br />
-        Learn how to build an app by using one!
+        Welcome to the Apex Legends Status Companion App<br />
+        To get started, make sure you have a valid login.  If you don't, you can create one <a href="#">here</a><br />
+        Once you log in, you can retrieve your Companion API Key.
       </p>
+      Enter your key here
+      <label for="api_key"></label><input id="api_key" type="text"/>
+      <input type="button" onclick="saveAPIKey(document.getElementById('api_key'))"/>
       <div id="version"></div>
     </div>
     <div class="desktopBottom">
@@ -62,25 +65,6 @@
       </div>
     </div>
   </main>
-
-  <script>
-    // Standard Google Universal Analytics code
-    (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      },
-        i[r].l = 1 * new Date(); a = s.createElement(o),
-          m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-      // Note: https protocol here
-    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-    ga('create', 'UA-144253676-3', 'auto');
-
-    // Removes failing protocol check. @see: http://stackoverflow.com/a/22152353/1958200
-    ga('set', 'checkProtocolTask', function () { });
-    ga('require', 'displayfeatures');
-    ga('send', 'pageview', '/desktop.html');
-  </script>
 </body>
 
 </html>
