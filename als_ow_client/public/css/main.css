@@ -1,7 +1,25 @@
+:root {
+    --main-bg-color: #000000;
+    --header-bg-color: #242424;
+    --header-bg-color-highlight: #313131;
+    --header-bg-color-close: rgba(255, 0, 0, 0.5);
+    --text-color: wheat;
+    --shadow-box-margin: 3pt;
+}
+
+html, body {
+    height: 100%;
+}
+
+#app {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 26pt auto 30pt;
+    background-color: var(--main-bg-color);
+}
+
 body {
     font-family: "PT Sans Narrow", sans-serif;
-    font-size: larger;
-    color: wheat;
-    background-color: black;
+    color: var(--text-color);
     margin: 0;
 }

@@ -101,7 +101,7 @@ class BackgroundController {
     private onInfoUpdates(info) {
         let didUpdate = this.updateGameStateWithInfo(info)
         if(didUpdate) {
-            console.log("Updated Gamestate with info: " + JSON.stringify(info))
+            console.log("Updated Game state with info: " + JSON.stringify(info))
         } else {
             let match_event = matchEventFromInfo(info)
             if(match_event && this._currentMatch) {
@@ -119,7 +119,7 @@ class BackgroundController {
                 return // EARLY RETURN
             }
             if (match_event.event_value === 'match_start') {
-                console.log("Creating new match with gamestate: " + JSON.stringify(this._gameState))
+                console.log("Creating new match with game state: " + JSON.stringify(this._gameState))
                 this._currentMatch = new Match(this._gameState)
             }
             this._currentMatch.saveEvent(match_event)

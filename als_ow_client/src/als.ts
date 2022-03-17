@@ -1,3 +1,5 @@
+import { kUrls } from "./consts";
+
 export class Match {
     player_name: string
     game_mode: string
@@ -140,11 +142,16 @@ export function matchEventFromInfo(info) {
 }
 
 export function sendMatchToServer(match) {
-    let url = "http://192.168.1.219:8822/event";
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", url);
-    xhr.setRequestHeader("Accept", "application/json");
-    xhr.setRequestHeader("Content-Type", "application/json");
+    let apiKey = localStorage.getItem( "apiKey" )
+    if (!apiKey) {
+        return // EARLY RETURN
+    }
+    let url = kUrls.als + "event"
+    let xhr = new XMLHttpRequest()
+    xhr.open("POST", url)
+    xhr.setRequestHeader("Accept", "application/json")
+    xhr.setRequestHeader("Content-Type", "application/json")
+    xhr.setRequestHeader('X-Api-Key', apiKey)
     xhr.send(JSON.stringify(match))
 }
 

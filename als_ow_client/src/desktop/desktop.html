@@ -2,69 +2,86 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="stylesheet" href="../../css/general.css" />
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow">
   <link rel="stylesheet" href="../../css/main.css" />
   <link rel="stylesheet" href="../../css/header.css" />
   <link rel="stylesheet" href="../../css/desktop.css" />
   <link rel="stylesheet" href="../../css/modal.css" />
-  <title>Apex Legends Status Companion</title>
+  <title>Apex Legends Status Companion App</title>
 </head>
 <body>
-  <!-- -------------------------------- Header ------------------------------- -->
+  <div id="app">
+    <!-- -------------------------------- Header ------------------------------- -->
 
-  <header>
-    <img id="header_icon" src="../../icons/als_icon.svg" />
-    <h1>Apex Legends Status Companion</h1>
-    <div class="window-controls-group">
-      <button id="minimizeButton" class="window-control window-control-minimize"></button>
-      <button id="maximizeButton" class="window-control window-control-maximize"></button>
-      <button id="closeButton" class="window-control window-control-close"></button>
-    </div>
-  </header>
+    <header id="header" class="app-header">
+      <img id="favicon" src="../../icons/icon_small.png"  alt="favicon"/>
+      <div id="title">Apex Legends Status Companion App</div>
+      <div class="window-controls-group">
+        <button id="minimizeButton" class="window-control window-control-minimize"></button>
+        <button id="maximizeButton" class="window-control window-control-maximize"></button>
+        <button id="closeButton" class="window-control window-control-close"></button>
+      </div>
+    </header>
 
-  <!-- --------------------------------- Main -------------------------------- -->
-  <main>
-    <div class="desktopTop">
-      <h1>Apex Legends Status API Companion App</h1>
-      <p>
-        Welcome to the Apex Legends Status Companion App<br />
-        To get started, make sure you have a valid login.  If you don't, you can create one <a href="#">here</a><br />
-        Once you log in, you can retrieve your Companion API Key.
-      </p>
-      Enter your key here
-      <label for="api_key"></label><input id="api_key" type="text"/>
-      <input type="button" onclick="saveAPIKey(document.getElementById('api_key'))"/>
-      <div id="version"></div>
-    </div>
-    <div class="desktopBottom">
-      <!-- Launch a game! -->
-      <div id="left">
-        <h1>
-          Launch a game and the In-Game window will pop-up automatically!
-        </h1>
+    <!-- --------------------------------- Main -------------------------------- -->
+    <main>
+      <div id="welcome_caption">Welcome to the Apex Legends Status Companion App.</div>
+      <div id="welcome_description">Instructions for use a</div>
+      <!-- displayed when the API key is not known -->
+      <div id="api_key_entry">
+        <label for="api_key">Enter API Key Here: </label>
+        <input id="api_key" type="text"/>
+        <button id="check_api_key">OK</button>
       </div>
-      <!-- Launch a game! -->
-      <div id="middle">
-        What can you learn with this sample app?
-        <br /><br />
-        1. How to listen to real-time game events and how to identify specific
-        events like match start/end, kill, and death.
-        <br /><br />
-        2. How to use a transparent background window as a service bus, that
-        acts as the main controller of your app.
-        <br /><br />
-        3. How to use Hotkeys that show/hide your app while you are in-game.
+      <!-- displayed when the API key is known -->
+      <div id="api_key_info">
       </div>
-      <!-- picture -->
-      <div id="right">
-        <div style="text-align: center">
-          <div style="display: inline-block">
-            <img src="../../img/cool_wolf.png" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+  <!--    <div class="desktopTop">-->
+  <!--      <h1>Apex Legends Status API Companion App</h1>-->
+  <!--      <p>-->
+  <!--        Welcome to the Apex Legends Status Companion App<br />-->
+  <!--        To get started, make sure you have a valid login.  If you don't, you can create one <a href="#">here</a><br />-->
+  <!--        Once you log in, you can retrieve your Companion API Key.-->
+  <!--      </p>-->
+  <!--      Enter your key here-->
+  <!--      <label for="api_key"></label><input id="api_key" type="text"/>-->
+  <!--      <input type="button" onclick="saveAPIKey(document.getElementById('api_key'))"/>-->
+  <!--      <div id="version"></div>-->
+  <!--    </div>-->
+  <!--    <div class="desktopBottom">-->
+  <!--      &lt;!&ndash; Launch a game! &ndash;&gt;-->
+  <!--      <div id="left">-->
+  <!--        <h1>-->
+  <!--          Launch a game and the In-Game window will pop-up automatically!-->
+  <!--        </h1>-->
+  <!--      </div>-->
+  <!--      &lt;!&ndash; Launch a game! &ndash;&gt;-->
+  <!--      <div id="middle">-->
+  <!--        What can you learn with this sample app?-->
+  <!--        <br /><br />-->
+  <!--        1. How to listen to real-time game events and how to identify specific-->
+  <!--        events like match start/end, kill, and death.-->
+  <!--        <br /><br />-->
+  <!--        2. How to use a transparent background window as a service bus, that-->
+  <!--        acts as the main controller of your app.-->
+  <!--        <br /><br />-->
+  <!--        3. How to use Hotkeys that show/hide your app while you are in-game.-->
+  <!--      </div>-->
+  <!--      &lt;!&ndash; picture &ndash;&gt;-->
+  <!--      <div id="right">-->
+  <!--        <div style="text-align: center">-->
+  <!--          <div style="display: inline-block">-->
+  <!--            <img src="../../img/cool_wolf.png" />-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+    </main>
+    <footer>
+      Footer
+    </footer>
+  </div>
 </body>
 
 </html>

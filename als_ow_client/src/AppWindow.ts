@@ -16,7 +16,8 @@ export class AppWindow {
     const minimizeButton = document.getElementById('minimizeButton');
 
     const header = document.getElementById('header');
-
+    console.log("JHS: ")
+    console.log(header)
     this.setDrag(header);
 
     closeButton.addEventListener('click', () => {
