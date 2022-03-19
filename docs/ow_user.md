@@ -21,14 +21,14 @@ Example:
 ```
 
 ## Returns
-### User found
+### API Key found
 
 ```
 200 (OK)
 {"name":"GoshDarnedHero"}
 ```
 
-### User not found
+### API Key not found
 ```
 401 (Unauthorized)
 {"message": "ERROR: Unauthorized"}
