@@ -1,7 +1,13 @@
-# Match Event JSON
+# Game Ended API
 [Back to README](../README.md)
 
 ### **POST** - /ow_game_ended
+
+#### Header Parameters
+
+- **X-Api-Key**: `string` _valid api key_
+
+#### Body
 
 The Match JSON will be sent upon the completion of the match, it will have the match level data:
 ### `root`
@@ -128,3 +134,18 @@ Here are all the different event types and their values
           }
       }
       ```
+
+## Returns
+### API Key found
+
+```
+200 (OK)
+{}
+```
+
+### API Key not found
+```
+401 (Unauthorized)
+{"message": "ERROR: Unauthorized"}
+```
+

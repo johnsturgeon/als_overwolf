@@ -149,7 +149,6 @@ export function sendMatchToServer(match) {
     let url = kUrls.als + "event"
     let xhr = new XMLHttpRequest()
     xhr.open("POST", url)
-    xhr.setRequestHeader("Accept", "application/json")
     xhr.setRequestHeader("Content-Type", "application/json")
     xhr.setRequestHeader('X-Api-Key', apiKey)
     xhr.send(JSON.stringify(match))

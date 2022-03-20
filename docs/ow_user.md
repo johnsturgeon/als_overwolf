@@ -13,7 +13,7 @@ curl -X GET "https://apexlegendsstatus.com/systems/overwolf/ow_user" \
 
 #### Header Parameters
 
-- **X-Api-Key** should be **string**
+- **X-Api-Key**: `string` _valid api key_
 
 Example:
 ```
