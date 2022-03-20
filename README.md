@@ -10,9 +10,9 @@ Below is an overview of the basic flow between the Overwolf app and Apex Legends
 
 ### App game data collection
 * User starts game
-* Overwolf app sends message to https://apexlegendsstatus.com/systems/overwolf/ow_game notifying of game start.
+* Overwolf app sends message to https://apexlegendsstatus.com/systems/overwolf/ow_game_began notifying of game start.
 * Overwolf app collects event data during game.
-* Overwolf app sends all game data to https://apexlegendsstatus.com/systems/overwolf/ow_game when game is done.
+* Overwolf app sends all game data to https://apexlegendsstatus.com/systems/overwolf/ow_game_ended when game is done.
 
 ## More reading
 * [User retrieval API detail](docs/ow_user.md)
