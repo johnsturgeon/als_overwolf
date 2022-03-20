@@ -15,6 +15,8 @@ Below is an overview of the basic flow between the Overwolf app and Apex Legends
 * Overwolf app sends all game data to https://apexlegendsstatus.com/systems/overwolf/ow_game_ended when game is done.
 
 ## More reading
-* [User retrieval API detail](docs/ow_user.md)
 * [API Key information](docs/api_key.md)
-* [Match event JSON](docs/match_events.md)
+* [User retrieval API detail](docs/ow_user.md)
+* [Game began API detail](docs/game_began.md)
+* [Game ended API detail](docs/game_ended.md)
+
