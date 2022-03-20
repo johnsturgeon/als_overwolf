@@ -1,6 +1,8 @@
 # Match Event JSON
 [Back to README](../README.md)
 
+### **POST** - /ow_game_ended
+
 The Match JSON will be sent upon the completion of the match, it will have the match level data:
 ### `root`
 * `player_name`: String - [CLUB]OriginPlayerName
