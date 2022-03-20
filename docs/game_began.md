@@ -1,7 +1,7 @@
-# Game Started API
+# Game Began API
 [Back to README](../README.md)
 
-### **POST** - /ow_game_started
+### **POST** - /ow_game_began
 
 #### Header Parameters
 
