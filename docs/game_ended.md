@@ -1,37 +1,33 @@
-# Game Ended API
-[Back to README](../README.md)
-
-### **POST** - /ow_game_ended
-
-#### Header Parameters
-
-- **X-Api-Key**: `string` _valid api key_
-
-#### Body
+# Game Ended JSON
+[Back to OW Event](ow_event.md)
 
 The Match JSON will be sent upon the completion of the match, it will have the match level data:
-### `root`
-* `player_name`: String - [CLUB]OriginPlayerName
-* `game_mode`: String - Possible Values:
-    * "#PL_FIRINGRANGE"
-    * "#PL_TRAINING"
-    * "#PL_DUO"
-    * "#PL_TRIO"
-    * "#PL_Ranked_Leagues"
-    * "#SHADOWROYALE_MODE"
-    * "#CONTROL_NAME"
-* `match_start_timestamp`: Unix Timestamp - Start of match
-* `match_end_timestamp`: Unix Timestamp - End of match
-* `match_events`: Array - all match events in order
+* `ow_event_type: game_ended`
+* `ow_event_data:`
+  * `player_name`: String - [CLUB]OriginPlayerName
+  * `game_mode`: String - Possible Values:
+      * "#PL_FIRINGRANGE"
+      * "#PL_TRAINING"
+      * "#PL_DUO"
+      * "#PL_TRIO"
+      * "#PL_Ranked_Leagues"
+      * "#SHADOWROYALE_MODE"
+      * "#CONTROL_NAME"
+  * `match_start_timestamp`: Unix Timestamp - Start of match
+  * `match_end_timestamp`: Unix Timestamp - End of match
+  * `match_events`: Array - all match events in order
 
 Example:
 ```json
 {
-  "player_name": "[DADS]GoshDarnedHero",
-  "game_mode": "#PL_FIRINGRANGE",
-  "match_start_timestamp": 1644110359,
-  "match_end_timestamp": 1644110387,
-  "match_events": []
+  "ow_event_type": "game_began",
+  "ow_event_data": {
+    "player_name": "[DADS]GoshDarnedHero",
+    "game_mode": "#PL_FIRINGRANGE",
+    "match_start_timestamp": 1644110359,
+    "match_end_timestamp": 1644110387,
+    "match_events": []
+  }
 }
 ```
 
