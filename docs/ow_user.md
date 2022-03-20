@@ -7,7 +7,7 @@
 #### CURL
 
 ```sh
-curl -X GET "https://apexlegendsstatus.com/ow_user" \
+curl -X GET "https://apexlegendsstatus.com/systems/overwolf/ow_user" \
     -H "X-Api-Key: tPz7qGm!BFQN9Ah6SgKzr2RA"
 ```
 
