@@ -134,4 +134,11 @@ dmypy.json
 /als_ingestor/event.json
 /als_ow_client/node_modules/
 /node_modules/
+
+# Build artifacts
 /als_ow_client/releases/
+
+# Soft Links to directories
+/als_ow_client/css
+/als_ow_client/icons
+/als_ow_client/img

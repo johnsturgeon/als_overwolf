@@ -25,59 +25,20 @@
     </header>
 
     <!-- --------------------------------- Main -------------------------------- -->
-    <main>
+    <main id="app_api_key_entry" class="dynamicElement">
       <div id="welcome_caption">Welcome to the Apex Legends Status Companion App.</div>
       <div id="welcome_description">Instructions for use go here</div>
-      <!-- displayed when the API key is not known -->
-      <div id="api_key_entry">
-        <label for="api_key">Enter API Key Here: </label>
-        <input id="api_key" type="text"/>
+      <div id="api_key_wrapper">
+        <label for="api_key_input">Enter API Key Here: </label>
+        <input id="api_key_input" type="text"/>
         <button id="check_api_key">OK</button>
       </div>
-      <!-- displayed when the API key is known -->
-      <div id="api_key_info">
+      <div id="error_message" class="dynamicElement"></div>
+    </main> <!-- end main api_key_entry -->
+    <main id="app_body" class="dynamicElement">
+      <div id="api_key_valid">
         Here is your API Key: <span id="api_key_span"></span> <button id="delete_api_key">Delete</button>
       </div>
-  <!--    <div class="desktopTop">-->
-  <!--      <h1>Apex Legends Status API Companion App</h1>-->
-  <!--      <p>-->
-  <!--        Welcome to the Apex Legends Status Companion App<br />-->
-  <!--        To get started, make sure you have a valid login.  If you don't, you can create one <a href="#">here</a><br />-->
-  <!--        Once you log in, you can retrieve your Companion API Key.-->
-  <!--      </p>-->
-  <!--      Enter your key here-->
-  <!--      <label for="api_key"></label><input id="api_key" type="text"/>-->
-  <!--      <input type="button" onclick="saveAPIKey(document.getElementById('api_key'))"/>-->
-  <!--      <div id="version"></div>-->
-  <!--    </div>-->
-  <!--    <div class="desktopBottom">-->
-  <!--      &lt;!&ndash; Launch a game! &ndash;&gt;-->
-  <!--      <div id="left">-->
-  <!--        <h1>-->
-  <!--          Launch a game and the In-Game window will pop-up automatically!-->
-  <!--        </h1>-->
-  <!--      </div>-->
-  <!--      &lt;!&ndash; Launch a game! &ndash;&gt;-->
-  <!--      <div id="middle">-->
-  <!--        What can you learn with this sample app?-->
-  <!--        <br /><br />-->
-  <!--        1. How to listen to real-time game events and how to identify specific-->
-  <!--        events like match start/end, kill, and death.-->
-  <!--        <br /><br />-->
-  <!--        2. How to use a transparent background window as a service bus, that-->
-  <!--        acts as the main controller of your app.-->
-  <!--        <br /><br />-->
-  <!--        3. How to use Hotkeys that show/hide your app while you are in-game.-->
-  <!--      </div>-->
-  <!--      &lt;!&ndash; picture &ndash;&gt;-->
-  <!--      <div id="right">-->
-  <!--        <div style="text-align: center">-->
-  <!--          <div style="display: inline-block">-->
-  <!--            <img src="../../img/cool_wolf.png" />-->
-  <!--          </div>-->
-  <!--        </div>-->
-  <!--      </div>-->
-  <!--    </div>-->
     </main>
     <footer>
       Footer

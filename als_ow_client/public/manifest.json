@@ -37,12 +37,12 @@
         "transparent": true,
         "override_on_update": true,
         "size": {
-          "width": 1212,
-          "height": 699
+          "width": 800,
+          "height": 550
         },
         "min_size": {
-          "width": 1212,
-          "height": 699
+          "width": 800,
+          "height": 550
         }
       }
     },
