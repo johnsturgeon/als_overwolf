@@ -139,6 +139,6 @@ dmypy.json
 /als_ow_client/releases/
 
 # Soft Links to directories
-/als_ow_client/css/
-/als_ow_client/icons/
-/als_ow_client/img/
+/als_ow_client/css
+/als_ow_client/icons
+/als_ow_client/img
