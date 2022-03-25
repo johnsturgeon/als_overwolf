@@ -14,7 +14,7 @@ html, body {
 #app {
     display: grid;
     height: 100%;
-    grid-template-rows: 26pt auto 30pt;
+    grid-template-rows: [header] 26pt [main] auto [footer] 20pt;
     background-color: var(--main-bg-color);
 }
 

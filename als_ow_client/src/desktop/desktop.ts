@@ -1,27 +1,36 @@
-import { AppWindow } from "../AppWindow";
-import {kUrls} from "../consts";
+import {AppWindow} from "../AppWindow";
+import {isValidAPIKey} from "../als";
 // The desktop window is the window displayed while game is not running.
-// In our case, our desktop window has no logic - it only displays static data.
-// Therefore, only the generic AppWindow class is called.
 
 class Desktop extends AppWindow {
     private static _instance: Desktop
-    private _api_key: string
+    private _lastError: string
+    private _fatalError: string
+
 
     private constructor() {
         super('desktop')
 
-        let checkApiKeyButton = document.getElementById('check_api_key')
+        const checkApiKeyButton = document.getElementById('check_api_key')
+        const apiKeyInput = document.getElementById('api_key_input') as HTMLInputElement
+        apiKeyInput.addEventListener('keyup', e => {
+            if (e.key === 'Enter') {
+                const apiKey = apiKeyInput.value;
+                this.saveAPIKeyIfValid(apiKey)
+                this.redrawView()
+            }
+        })
         checkApiKeyButton.addEventListener('click', () => {
-            const apiKey = (document.getElementById('api_key') as HTMLInputElement).value;
-            this.saveAPIKey(apiKey)
+            const apiKey = apiKeyInput.value;
+            this.saveAPIKeyIfValid(apiKey)
+            this.redrawView()
         });
-        let deleteApiKeyButton = document.getElementById('delete_api_key')
+        const deleteApiKeyButton = document.getElementById('delete_api_key')
         deleteApiKeyButton.addEventListener('click', () => {
             Desktop.deleteAPIKey()
-            this.showHideAPIKey()
+            this.redrawView()
         })
-        this.showHideAPIKey()
+        this.redrawView()
     }
 
     public static instance() {
@@ -31,51 +40,69 @@ class Desktop extends AppWindow {
         return this._instance
     }
 
-    public saveAPIKey(apiKey: string) {
-        function success(response: object) {
-            console.log("JHS: Updating Storage with key" + JSON.stringify(response))
-            localStorage.setItem( "apiKey", apiKey )
+    /**
+     * Saves an API Key to local storage.
+     *
+     * @param apiKey - string: api key to save in local storage
+     */
+    private saveAPIKeyIfValid(apiKey: string) {
+        function is_valid(data) {
+            console.log("JHS: Updating Storage with key" + JSON.stringify(data))
+            localStorage.setItem("apiKey", apiKey)
+            Desktop.instance().redrawView()
         }
-        this.isValidAPIKey(apiKey, success)
-
-    }
-
-    public getAPIKey() {
-        return localStorage.getItem( "apiKey" )
-    }
-
-    public isValidAPIKey(apiKey: string, on_success: Function) {
-        let url = kUrls.als_ow_user
-        let xhr = new XMLHttpRequest()
-        xhr.onreadystatechange = (e) => {
-            if(xhr.status == 200) {
-                console.log("JHS: Request sent, response OK")
-                console.log("JHS: " + xhr.responseText)
-                on_success(xhr)
-            } else {
-                console.warn("JHS: Request sent, failed")
-                console.log("JHS: " + xhr.responseText)
-            }
+        function is_not_valid(data) {
+            console.log("JHS: Key not valid" + JSON.stringify(data))
+            Desktop.instance()._lastError = "Incorrect Key entered"
+            Desktop.instance().redrawView()
         }
-        xhr.open("GET", url)
-        xhr.setRequestHeader("Content-Type", "application/json")
-        xhr.setRequestHeader('X-Api-Key', apiKey)
-        xhr.send("{}")
+        function is_error(error) {
+            console.error(error)
+            Desktop.instance()._fatalError = "Error communicating to Apex Legends Server"
+            Desktop.instance().redrawView()
+        }
+        isValidAPIKey(apiKey, is_valid, is_not_valid, is_error)
     }
 
-    private showHideAPIKey() {
-        console.log("JHS: showHideAPI Key")
+    /**
+     * Returns the saved api key from local storage
+     *
+     * @return api key from local storage
+     */
+    public getAPIKey(): string {
+        return localStorage.getItem("apiKey")
+    }
+
+
+    /**
+     * Called after every change to the state.
+     *
+     * This method will refresh all the elements in the view displaying the relevant information
+     *
+     * @private
+     */
+    private redrawView() {
+        // hide all 'dynamic' elements
+        const dynamicElements = document.getElementsByClassName('dynamicElement')
+        for (let i=0; i < dynamicElements.length; i++) {
+            const dynEle = dynamicElements[i] as HTMLElement;
+            dynEle.style.display = 'none'
+        }
+        // First, either show the API key entry box, or the known API key
         let apiKey = this.getAPIKey()
-        if(apiKey) {
-            console.log("JHS: Got API Key")
-            document.getElementById('api_key_entry').style.display = 'none'
-            document.getElementById('api_key_info').style.display = 'block'
+        if (apiKey) {
+            document.getElementById('app_body').style.display = 'block'
             let api_key_span = document.getElementById('api_key_span')
             api_key_span.innerHTML = apiKey
         } else {
-            console.log("JHS: Did not get API Key")
-            document.getElementById('api_key_info').style.display = 'none'
-            document.getElementById('api_key_entry').style.display = 'block'
+            document.getElementById('app_api_key_entry').style.display = 'block'
+        }
+        // display the last error once
+        if (this._lastError) {
+            const errDiv = document.getElementById('error_message') as HTMLDivElement
+            errDiv.innerHTML = this._lastError
+            errDiv.style.display = 'block'
+            this._lastError = ""
         }
     }
 
@@ -88,4 +115,4 @@ class Desktop extends AppWindow {
     }
 }
 
-Desktop.instance().run()
+Desktop.instance().run().then()

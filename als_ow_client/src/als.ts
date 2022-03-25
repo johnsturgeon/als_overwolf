@@ -154,6 +154,41 @@ export function sendMatchToServer(match) {
     xhr.send(JSON.stringify(match))
 }
 
+/**
+ * Checks to see if the given key is valid
+ *
+ * @param apiKey - the api key to check
+ * @param on_valid - function to call if the api key is valid
+ * @param on_not_valid - function to call if the api key is not valid
+ * @param on_error - function to call if there is an error communicating with the server
+ */
+export function isValidAPIKey(apiKey: string, on_valid: Function, on_not_valid: Function, on_error: Function) {
+    let url = kUrls.als_ow + "/ow_user"
+    let header = new Headers({
+        'Content-Type': 'application/json',
+        'X-Api-Key': apiKey
+    })
+    let initObject = {
+        method: 'GET', headers: header
+    }
+    fetch(url, initObject)
+        .then(response => {
+            if (response.ok) {
+                response.json().then(data => {
+                    on_valid(data)
+                })
+            } else if (response.status == 401) {
+                response.json().then(data => {
+                    on_not_valid(data)
+                })
+            }
+        })
+        .catch(error => {
+            on_error(error)
+        })
+}
+
+
 const changeCaseOfKey = key => {
     return key
         .replace(/\W+/g, " ")

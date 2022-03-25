@@ -1,0 +1,15 @@
+main {
+    display: grid;
+    margin: 40pt;
+    overflow:hidden;
+    border-radius: 6px;
+    background-color: var(--header-bg-color);
+}
+
+#api_key_entry {
+    grid-template-rows: [welcome] auto [instructions] auto [api_key] auto;
+
+}
+#app_body {
+    grid-template-rows: [api_key] auto;
+}
