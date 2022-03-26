@@ -13,6 +13,7 @@ The Match JSON will be sent upon the completion of the match, it will have the m
       * "#PL_Ranked_Leagues"
       * "#SHADOWROYALE_MODE"
       * "#CONTROL_NAME"
+  * `pseudo_match_id`: UUID unique for each match
   * `match_start_timestamp`: Unix Timestamp - Start of match
   * `match_end_timestamp`: Unix Timestamp - End of match
   * `match_events`: Array - all match events in order
@@ -24,6 +25,7 @@ Example:
   "ow_event_data": {
     "player_name": "[DADS]GoshDarnedHero",
     "game_mode": "#PL_FIRINGRANGE",
+    "pseudo_match_id": "5f3ae12a-f670-4c58-a880-58edb2fd716d",
     "match_start_timestamp": 1644110359,
     "match_end_timestamp": 1644110387,
     "match_events": []

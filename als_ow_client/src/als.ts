@@ -3,13 +3,15 @@ import { kUrls } from "./consts";
 export class Match {
     player_name: string
     game_mode: string
+    pseudo_match_id: string
     match_start_timestamp: number
     match_end_timestamp: number
     match_events: any[]
 
-    constructor(game_state) {
+    constructor(game_state, pseudo_match_id) {
         this.player_name = game_state.playerName
         this.game_mode = game_state.gameMode
+        this.pseudo_match_id = pseudo_match_id
         this.match_start_timestamp = Math.floor(Date.now() / 1000)
         this.match_end_timestamp = null
         this.match_events = []
@@ -135,6 +137,10 @@ export function matchEventFromInfo(info) {
             return_event.event_type = 'match_summary'
             return_event.event_value = jsonOrString(match_info['match_summary'])
             break
+        case 'pseudo_match_id':
+            return_event.event_type = 'pseudo_match_id'
+            return_event.event_value = jsonOrString(match_info['pseudo_match_id'])
+            break
         default:
             return_event = null
     }
@@ -142,10 +148,11 @@ export function matchEventFromInfo(info) {
 }
 
 export function sendMatchToServer(match) {
+    // TODO: Re-comment this when I'm done testing
     let apiKey = localStorage.getItem( "apiKey" )
-    if (!apiKey) {
-        return // EARLY RETURN
-    }
+    // if (!apiKey) {
+    //     return // EARLY RETURN
+    // }
     let url = kUrls.als + "event"
     let xhr = new XMLHttpRequest()
     xhr.open("POST", url)
