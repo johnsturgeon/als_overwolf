@@ -131,7 +131,7 @@ dmypy.json
 
 # Mac files
 .DS_Store
-/als_ingestor/event_1.json
+/als_ingestor/event.json
 /als_ow_client/node_modules/
 /node_modules/
 
