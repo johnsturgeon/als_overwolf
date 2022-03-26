@@ -99,15 +99,31 @@ class BackgroundController {
         return didUpdate
     }
     private onInfoUpdates(info) {
+        console.log("New Info: " + JSON.stringify(info))
         let didUpdate = this.updateGameStateWithInfo(info)
         if(didUpdate) {
             console.log("Updated Game state with info: " + JSON.stringify(info))
-        } else {
-            let match_event = matchEventFromInfo(info)
-            if(match_event && this._currentMatch) {
-                this._currentMatch.saveEvent(match_event)
+            return // EARLY RETURN
+        }
+        let match_event = matchEventFromInfo(info)
+        if (!match_event) {
+            return // EARLY RETURN
+        }
+        // got a pseudo match id, must be a new game
+        if (match_event.event_type == 'pseudo_match_id') {
+            if (match_event.event_value) {
+                const pseudo_match_id = match_event.event_value
+                console.log("Creating new match with game state: " + JSON.stringify(this._gameState))
+                this._currentMatch = new Match(this._gameState, pseudo_match_id)
+            } else {
+                this._currentMatch.endMatch()
+                sendMatchToServer(this._currentMatch)
+                console.log("Sent match to server: " + JSON.stringify(this._currentMatch))
+                this._currentMatch = null
             }
-            console.log("New Info: " + JSON.stringify(info))
+        }
+        if(this._currentMatch) {
+            this._currentMatch.saveEvent(match_event)
         }
     }
 
@@ -118,17 +134,7 @@ class BackgroundController {
                 console.warn("Got unknown event: " + JSON.stringify(event))
                 return // EARLY RETURN
             }
-            if (match_event.event_value === 'match_start') {
-                console.log("Creating new match with game state: " + JSON.stringify(this._gameState))
-                this._currentMatch = new Match(this._gameState)
-            }
             this._currentMatch.saveEvent(match_event)
-            if (match_event.event_value === 'match_end') {
-                this._currentMatch.endMatch()
-                sendMatchToServer(this._currentMatch)
-                console.log("Sent match to server: " + JSON.stringify(this._currentMatch))
-                this._currentMatch = null
-            }
             console.log("New Event: " + JSON.stringify(event))
         }
     }
