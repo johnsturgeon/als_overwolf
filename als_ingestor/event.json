@@ -1,0 +1,889 @@
+{
+    "player_name": "[DADS]GoshDarnedHero",
+    "game_mode": "#PL_FIRINGRANGE",
+    "pseudo_match_id": "8d6395b9-0ca9-465d-9aa1-2bba7636982b",
+    "match_start_timestamp": 1648260610,
+    "match_end_timestamp": 1648260726,
+    "match_events": [
+        {
+            "event_timestamp": 1648260610,
+            "event_type": "pseudo_match_id",
+            "event_value": "8d6395b9-0ca9-465d-9aa1-2bba7636982b"
+        },
+        {
+            "event_timestamp": 1648260610,
+            "event_type": "match_state_event",
+            "event_value": "match_start"
+        },
+        {
+            "event_timestamp": 1648260610,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 1,
+                "players": null,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260611,
+            "event_type": "location",
+            "event_value": {
+                "x": 267,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260611,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 2,
+                "players": null,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260611,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 5,
+                "players": 5,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260612,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 6,
+                "players": 6,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260612,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 7,
+                "players": 7,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260612,
+            "event_type": "tabs",
+            "event_value": {
+                "kills": 0,
+                "assists": 0,
+                "spectators": 0,
+                "teams": 8,
+                "players": 8,
+                "damage": 0,
+                "cash": 0
+            }
+        },
+        {
+            "event_timestamp": 1648260612,
+            "event_type": "location",
+            "event_value": {
+                "x": 268,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260613,
+            "event_type": "location",
+            "event_value": {
+                "x": 269,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260613,
+            "event_type": "location",
+            "event_value": {
+                "x": 270,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260614,
+            "event_type": "location",
+            "event_value": {
+                "x": 271,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260615,
+            "event_type": "location",
+            "event_value": {
+                "x": 272,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260615,
+            "event_type": "location",
+            "event_value": {
+                "x": 274,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260616,
+            "event_type": "location",
+            "event_value": {
+                "x": 275,
+                "y": -62,
+                "z": -275
+            }
+        },
+        {
+            "event_timestamp": 1648260616,
+            "event_type": "location",
+            "event_value": {
+                "x": 276,
+                "y": -62,
+                "z": -276
+            }
+        },
+        {
+            "event_timestamp": 1648260617,
+            "event_type": "location",
+            "event_value": {
+                "x": 278,
+                "y": -63,
+                "z": -277
+            }
+        },
+        {
+            "event_timestamp": 1648260617,
+            "event_type": "location",
+            "event_value": {
+                "x": 280,
+                "y": -63,
+                "z": -278
+            }
+        },
+        {
+            "event_timestamp": 1648260618,
+            "event_type": "location",
+            "event_value": {
+                "x": 282,
+                "y": -63,
+                "z": -279
+            }
+        },
+        {
+            "event_timestamp": 1648260618,
+            "event_type": "location",
+            "event_value": {
+                "x": 284,
+                "y": -64,
+                "z": -280
+            }
+        },
+        {
+            "event_timestamp": 1648260619,
+            "event_type": "location",
+            "event_value": {
+                "x": 286,
+                "y": -63,
+                "z": -282
+            }
+        },
+        {
+            "event_timestamp": 1648260619,
+            "event_type": "location",
+            "event_value": {
+                "x": 288,
+                "y": -63,
+                "z": -283
+            }
+        },
+        {
+            "event_timestamp": 1648260620,
+            "event_type": "location",
+            "event_value": {
+                "x": 290,
+                "y": -63,
+                "z": -285
+            }
+        },
+        {
+            "event_timestamp": 1648260620,
+            "event_type": "location",
+            "event_value": {
+                "x": 293,
+                "y": -63,
+                "z": -286
+            }
+        },
+        {
+            "event_timestamp": 1648260621,
+            "event_type": "location",
+            "event_value": {
+                "x": 295,
+                "y": -63,
+                "z": -287
+            }
+        },
+        {
+            "event_timestamp": 1648260621,
+            "event_type": "location",
+            "event_value": {
+                "x": 298,
+                "y": -63,
+                "z": -288
+            }
+        },
+        {
+            "event_timestamp": 1648260622,
+            "event_type": "location",
+            "event_value": {
+                "x": 300,
+                "y": -63,
+                "z": -289
+            }
+        },
+        {
+            "event_timestamp": 1648260622,
+            "event_type": "location",
+            "event_value": {
+                "x": 303,
+                "y": -64,
+                "z": -289
+            }
+        },
+        {
+            "event_timestamp": 1648260623,
+            "event_type": "location",
+            "event_value": {
+                "x": 305,
+                "y": -64,
+                "z": -290
+            }
+        },
+        {
+            "event_timestamp": 1648260623,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -65,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260624,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -65,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260624,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -66,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260630,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -66,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260631,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -67,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260635,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -67,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260635,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -67,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260636,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -68,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260636,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -68,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260638,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -67,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260643,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -68,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260643,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -69,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260644,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -69,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260644,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -69,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260645,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -70,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260646,
+            "event_type": "location",
+            "event_value": {
+                "x": 306,
+                "y": -70,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260646,
+            "event_type": "location",
+            "event_value": {
+                "x": 306,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260647,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260647,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260649,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260649,
+            "event_type": "location",
+            "event_value": {
+                "x": 306,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260650,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260651,
+            "event_type": "location",
+            "event_value": {
+                "x": 306,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260651,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260653,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260653,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260654,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260654,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260656,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260665,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260666,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -73,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260666,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -74,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260667,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -75,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260679,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -75,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260681,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -74,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260682,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -74,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260683,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -75,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260683,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -74,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260684,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -74,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260684,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -73,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260685,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -72,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260687,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260687,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -71,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260688,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -70,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260688,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -69,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260689,
+            "event_type": "location",
+            "event_value": {
+                "x": 307,
+                "y": -68,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260689,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -68,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260690,
+            "event_type": "location",
+            "event_value": {
+                "x": 308,
+                "y": -67,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260693,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -66,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260697,
+            "event_type": "location",
+            "event_value": {
+                "x": 309,
+                "y": -65,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260697,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -64,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260698,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -63,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260698,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -62,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260699,
+            "event_type": "location",
+            "event_value": {
+                "x": 312,
+                "y": -62,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260703,
+            "event_type": "location",
+            "event_value": {
+                "x": 313,
+                "y": -62,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260703,
+            "event_type": "location",
+            "event_value": {
+                "x": 313,
+                "y": -61,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260704,
+            "event_type": "location",
+            "event_value": {
+                "x": 313,
+                "y": -60,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260707,
+            "event_type": "location",
+            "event_value": {
+                "x": 312,
+                "y": -60,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260708,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -61,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260709,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -62,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260709,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -62,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260710,
+            "event_type": "location",
+            "event_value": {
+                "x": 310,
+                "y": -61,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260710,
+            "event_type": "location",
+            "event_value": {
+                "x": 311,
+                "y": -61,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260711,
+            "event_type": "location",
+            "event_value": {
+                "x": 312,
+                "y": -60,
+                "z": -292
+            }
+        },
+        {
+            "event_timestamp": 1648260711,
+            "event_type": "location",
+            "event_value": {
+                "x": 313,
+                "y": -60,
+                "z": -291
+            }
+        },
+        {
+            "event_timestamp": 1648260712,
+            "event_type": "location",
+            "event_value": {
+                "x": 314,
+                "y": -59,
+                "z": -292
+            }
+        }
+    ]
+}

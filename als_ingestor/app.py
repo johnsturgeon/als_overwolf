@@ -19,7 +19,7 @@ def index():
 def event():
     print(request.data)
     record = json.loads(request.data)
-    with open("event.json", "w") as outfile:
+    with open("event_1.json", "w") as outfile:
         json.dump(record, outfile, indent=4)
     return {"result": "success"}
 
