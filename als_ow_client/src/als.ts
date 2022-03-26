@@ -153,12 +153,20 @@ export function sendMatchToServer(match) {
     // if (!apiKey) {
     //     return // EARLY RETURN
     // }
+    // TODO: Update to `als_ow` when api is ready
     let url = kUrls.als + "event"
-    let xhr = new XMLHttpRequest()
-    xhr.open("POST", url)
-    xhr.setRequestHeader("Content-Type", "application/json")
-    xhr.setRequestHeader('X-Api-Key', apiKey)
-    xhr.send(JSON.stringify(match))
+    let header = new Headers({
+        'Content-Type': 'application/json',
+        'X-Api-Key': apiKey
+    })
+    let initObject = {
+        method: 'POST', headers: header, body: JSON.stringify(match)
+    }
+    fetch(url, initObject)
+        .then(r => r)
+        .catch(error => {
+            console.error(error)
+        })
 }
 
 /**
