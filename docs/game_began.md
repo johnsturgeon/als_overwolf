@@ -13,6 +13,7 @@ The Match Start JSON that will be sent upon the beginning of a match:
       * "#PL_Ranked_Leagues"
       * "#SHADOWROYALE_MODE"
       * "#CONTROL_NAME"
+  * `pseudo_match_id`: UUID unique for each match
   * `match_start_timestamp`: Unix Timestamp - Start of match
 
 Example:
@@ -22,6 +23,7 @@ Example:
   "ow_event_data": {
     "player_name": "[DADS]GoshDarnedHero",
     "game_mode": "#PL_FIRINGRANGE",
+    "pseudo_match_id": "5f3ae12a-f670-4c58-a880-58edb2fd716d",
     "match_start_timestamp": 1644110359
   }
 }
