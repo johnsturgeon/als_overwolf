@@ -7,6 +7,14 @@
     --shadow-box-margin: 3pt;
 }
 
+.online {
+    --status-indicator: rgba(0, 255, 0, 0.5);
+}
+
+.offline {
+    --status-indicator: rgba(255, 0, 0, 0.5);
+}
+
 html, body {
     height: 100%;
 }

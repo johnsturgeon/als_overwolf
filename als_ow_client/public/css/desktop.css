@@ -6,10 +6,23 @@ main {
     background-color: var(--header-bg-color);
 }
 
-#api_key_entry {
+#app_first_run {
     grid-template-rows: [welcome] auto [instructions] auto [api_key] auto;
 
 }
 #app_body {
-    grid-template-rows: [api_key] auto;
+    grid-template-rows: [api_key] auto [server_status] 16pt;
+}
+
+#service_status {
+    font-size: 10pt;
+}
+
+#status_text {
+    border-radius: 2pt;
+    background-color: var(--status-indicator);
+}
+
+#error_message {
+    display: none;
 }

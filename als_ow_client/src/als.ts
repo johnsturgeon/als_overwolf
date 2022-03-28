@@ -154,7 +154,7 @@ export function sendMatchToServer(match) {
     //     return // EARLY RETURN
     // }
     // TODO: Update to `als_ow` when api is ready
-    let url = kUrls.als + "event"
+    let url = kUrls.als_ow_event
     let header = new Headers({
         'Content-Type': 'application/json',
         'X-Api-Key': apiKey
@@ -178,7 +178,7 @@ export function sendMatchToServer(match) {
  * @param on_error - function to call if there is an error communicating with the server
  */
 export function isValidAPIKey(apiKey: string, on_valid: Function, on_not_valid: Function, on_error: Function) {
-    let url = kUrls.als_ow + "/ow_user"
+    let url = kUrls.als_ow_user + "/ow_user"
     let header = new Headers({
         'Content-Type': 'application/json',
         'X-Api-Key': apiKey
@@ -203,6 +203,21 @@ export function isValidAPIKey(apiKey: string, on_valid: Function, on_not_valid: 
         })
 }
 
+
+export function isServiceUp(on_success: Function, on_failure: Function) {
+    let url = kUrls.als_ow_ping
+    fetch(url)
+        .then(response => {
+            if (response.ok) {
+                on_success()
+            } else{
+                on_failure()
+            }
+        })
+        .catch(error => {
+            on_failure()
+        })
+}
 
 const changeCaseOfKey = key => {
     return key

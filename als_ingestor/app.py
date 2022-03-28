@@ -24,6 +24,14 @@ def event():
     return {"result": "success"}
 
 
+@app.route('/ow_ping')
+@cross_origin()
+def ow_ping():
+    return jsonify({
+        "status": "OK"
+    }), 200
+
+
 @app.route('/ow_user')
 @cross_origin()
 def ow_user():

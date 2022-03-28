@@ -25,7 +25,7 @@
     </header>
 
     <!-- --------------------------------- Main -------------------------------- -->
-    <main id="app_api_key_entry" class="dynamicElement">
+    <main id="app_first_run">
       <div id="welcome_caption">Welcome to the Apex Legends Status Companion App.</div>
       <div id="welcome_description">Instructions for use go here</div>
       <div id="api_key_wrapper">
@@ -33,12 +33,13 @@
         <input id="api_key_input" type="text"/>
         <button id="check_api_key">OK</button>
       </div>
-      <div id="error_message" class="dynamicElement"></div>
+      <div id="error_message"></div>
     </main> <!-- end main api_key_entry -->
-    <main id="app_body" class="dynamicElement">
+    <main id="app_body">
       <div id="api_key_valid">
         Here is your API Key: <span id="api_key_span"></span> <button id="delete_api_key">Delete</button>
       </div>
+      <div id="service_status">ALS Service is <span id="status_text" class="online">online</span></div>
     </main>
     <footer>
       Footer
@@ -47,3 +48,4 @@
 </body>
 
 </html>
+--
