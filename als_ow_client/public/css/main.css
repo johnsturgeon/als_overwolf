@@ -22,12 +22,14 @@ html, body {
 #app {
     display: grid;
     height: 100%;
-    grid-template-rows: [header] 26pt [main] auto [footer] 20pt;
+    grid-template-rows: [header] 30pt [main] auto [footer] 20pt;
     background-color: var(--main-bg-color);
 }
 
 body {
-    font-family: "PT Sans Narrow", sans-serif;
+    font-family: 'Inter', sans-serif;
+    font-weight: 200;
+    font-size: 12pt;
     color: var(--text-color);
     margin: 0;
 }

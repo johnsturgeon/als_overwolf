@@ -6,6 +6,7 @@ header {
   grid-template-columns: 20pt auto 70pt;
   background-color: var(--header-bg-color);
   align-items: center;
+  font-weight: 500;
 }
 
 .window-controls-group {

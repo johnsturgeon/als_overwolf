@@ -8,7 +8,7 @@
     "minimum-overwolf-version": "0.160.0",
     "icon": "icons/icon.png",
     "icon_gray": "icons/icon_gray.png",
-    "description": "Game Events Consumer Sample"
+    "description": "Companion app for the Apex Legends Status website"
   },
   "__TODO__": "JHS: Do I really need 'permissions'",
   "permissions": [
@@ -28,6 +28,12 @@
         "file": "background.html",
         "background_optimization": false,
         "is_background_page": true
+      },
+      "in_game": {
+        "desktop_only": true,
+        "native_window": true,
+        "file": "in_game.html",
+        "background_optimization": false
       },
       "desktop": {
         "file": "desktop.html",

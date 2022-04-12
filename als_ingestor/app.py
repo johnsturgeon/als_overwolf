@@ -14,7 +14,7 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/event', methods=['POST'])
+@app.route('/ow_event', methods=['POST'])
 @cross_origin()
 def event():
     print(request.data)

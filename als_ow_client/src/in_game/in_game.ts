@@ -1,158 +1,134 @@
+import {OWGamesEvents} from "@overwolf/overwolf-api-ts/dist";
 import {
-  OWGames,
-  OWGamesEvents,
-  OWHotkeys
-} from "@overwolf/overwolf-api-ts";
+  gameStateFromInfo,
+  Match,
+  matchEventFromEvent,
+  matchEventFromInfo,
+  sendMatchToServer
+} from "../als";
 
-import { AppWindow } from "../AppWindow";
-const kWindowNames = {
-  inGame: 'in_game',
-  desktop: 'desktop'
-}
+class InGame {
+  private static _instance: InGame
+  private _gameEventsListener: OWGamesEvents
+  private _currentMatch: Match
+  private _gameState = {
+    matchState: null,
+    playerName: null,
+    gameMode: null
+  }
 
-const kHotkeys = {
-  toggle: 'sample_app_ts_showhide'
-};
-
-
-const kGamesFeatures = new Map<number, string[]>([
-[21566,
-  [
+  private _interestedFeatures = [
+    // 'damage',
+    // 'death',
+    // 'inventory',
+    'kill',
+    // 'kill_feed',
     'location',
     'match_info',
     'match_state',
     'match_summary',
-    'me'
-  ]
-]
-]);
-
-import WindowState = overwolf.windows.WindowStateEx;
-
-// The window displayed in-game while a game is running.
-// It listens to all info events and to the game events listed in the consts.ts file
-// and writes them to the relevant log using <pre> tags.
-// The window also sets up Ctrl+F as the minimize/restore hotkey.
-// Like the background window, it also implements the Singleton design pattern.
-class InGame extends AppWindow {
-  private static _instance: InGame;
-  private _gameEventsListener: OWGamesEvents;
-  private _eventsLog: HTMLElement;
-  private _infoLog: HTMLElement;
+    'me',
+    // 'rank',
+    // 'revive',
+    // 'roster',
+    // 'team',
+    // 'victory'
+  ];
 
   private constructor() {
-    super(kWindowNames.inGame);
-
-    this._eventsLog = document.getElementById('eventsLog');
-    this._infoLog = document.getElementById('infoLog');
-
-    this.setToggleHotkeyBehavior();
-    this.setToggleHotkeyText();
-  }
-
-  public static instance() {
-    if (!this._instance) {
-      this._instance = new InGame();
-    }
-
-    return this._instance;
-  }
-
-  public async run() {
-    const gameClassId = await this.getCurrentGameClassId();
-
-    const gameFeatures = kGamesFeatures.get(gameClassId);
-
-    if (gameFeatures && gameFeatures.length) {
-      this._gameEventsListener = new OWGamesEvents(
-        {
+    // When a supported game is started or is ended, toggle the app's windows
+    console.log("JHS: Making a new InGame Window")
+    this._gameEventsListener = new OWGamesEvents({
           onInfoUpdates: this.onInfoUpdates.bind(this),
           onNewEvents: this.onNewEvents.bind(this)
         },
-        gameFeatures
-      );
+        this._interestedFeatures
+    );
 
-      this._gameEventsListener.start();
+  };
+
+  // Implementing the Singleton design pattern
+  public static instance(): InGame {
+    if (!InGame._instance) {
+      InGame._instance = new InGame()
     }
+
+    return InGame._instance;
+  }
+
+  private updateGameStateWithInfo(info: any) {
+    let didUpdate = false
+    const infoKeys = Object.keys(info)
+    infoKeys.forEach((key, index) => {
+      let game_state = gameStateFromInfo(key, info[key])
+      if(game_state) {
+        switch (game_state.gamestate_type) {
+          case 'name':
+            this._gameState.playerName = game_state.gamestate_value
+            didUpdate = true
+            break
+          case 'match_state':
+            this._gameState.matchState = game_state.gamestate_value
+            didUpdate = true
+            break
+          case 'game_mode':
+            this._gameState.gameMode = game_state.gamestate_value
+            break
+        }
+      }
+    });
+    return didUpdate
   }
 
   private onInfoUpdates(info) {
-    this.logLine(this._infoLog, info, false);
-  }
-
-  // Special events will be highlighted in the event log
-  private onNewEvents(e) {
-    const shouldHighlight = e.events.some(event => {
-      switch (event.name) {
-        case 'kill':
-        case 'death':
-        case 'assist':
-        case 'level':
-        case 'matchStart':
-        case 'match_start':
-        case 'matchEnd':
-        case 'match_end':
-          return true;
-      }
-
-      return false
-    });
-    this.logLine(this._eventsLog, e, shouldHighlight);
-  }
-
-  // Displays the toggle minimize/restore hotkey in the window header
-  private async setToggleHotkeyText() {
-    const gameClassId = await this.getCurrentGameClassId();
-    const hotkeyText = await OWHotkeys.getHotkeyText(kHotkeys.toggle, gameClassId);
-    const hotkeyElem = document.getElementById('hotkey');
-    hotkeyElem.textContent = hotkeyText;
-  }
-
-  // Sets toggleInGameWindow as the behavior for the Ctrl+F hotkey
-  private async setToggleHotkeyBehavior() {
-    const toggleInGameWindow = async (
-      hotkeyResult: overwolf.settings.hotkeys.OnPressedEvent
-    ): Promise<void> => {
-      console.log(`pressed hotkey for ${hotkeyResult.name}`);
-      const inGameState = await this.getWindowState();
-
-      if (inGameState.window_state === WindowState.NORMAL ||
-        inGameState.window_state === WindowState.MAXIMIZED) {
-        this.currWindow.minimize();
-      } else if (inGameState.window_state === WindowState.MINIMIZED ||
-        inGameState.window_state === WindowState.CLOSED) {
-        this.currWindow.restore();
+    console.log("New Info: " + JSON.stringify(info))
+    let didUpdate = this.updateGameStateWithInfo(info)
+    if(didUpdate) {
+      console.log("Updated Game state with info: " + JSON.stringify(info))
+      return // EARLY RETURN
+    }
+    let match_event = matchEventFromInfo(info)
+    if (!match_event) {
+      return // EARLY RETURN
+    }
+    // got a pseudo match id, must be a new game
+    if (match_event.event_type == 'pseudo_match_id') {
+      if (match_event.event_value) {
+        const pseudo_match_id = match_event.event_value
+        console.log("Creating new match with game state: " + JSON.stringify(this._gameState))
+        this._currentMatch = new Match(this._gameState, pseudo_match_id)
+      } else {
+        this._currentMatch.endMatch()
+        sendMatchToServer(this._currentMatch)
+        console.log("Sent match to server: " + JSON.stringify(this._currentMatch))
+        this._currentMatch = null
       }
     }
-
-    OWHotkeys.onHotkeyDown(kHotkeys.toggle, toggleInGameWindow);
-  }
-
-  // Appends a new line to the specified log
-  private logLine(log: HTMLElement, data, highlight) {
-    const line = document.createElement('pre');
-    line.textContent = JSON.stringify(data);
-
-    if (highlight) {
-      line.className = 'highlight';
-    }
-
-    // Check if scroll is near bottom
-    const shouldAutoScroll =
-      log.scrollTop + log.offsetHeight >= log.scrollHeight - 10;
-
-    log.appendChild(line);
-
-    if (shouldAutoScroll) {
-      log.scrollTop = log.scrollHeight;
+    if(this._currentMatch) {
+      this._currentMatch.saveEvent(match_event)
     }
   }
 
-  private async getCurrentGameClassId(): Promise<number | null> {
-    const info = await OWGames.getRunningGameInfo();
+  private onNewEvents(event) {
+    for(let i=0; i<event['events'].length; i++) {
+      let match_event = matchEventFromEvent(event['events'][i])
+      if (!match_event) {
+        console.warn("Got unknown event: " + JSON.stringify(event))
+        return // EARLY RETURN
+      }
+      if(this._currentMatch) {
+        this._currentMatch.saveEvent(match_event)
+        console.log("New Event: " + JSON.stringify(event))
+      } else {
+        console.log("JHS: Didn't save event (no _currentMatch)" + JSON.stringify(event))
+      }
+    }
+  }
 
-    return (info && info.isRunning && info.classId) ? info.classId : null;
+  public async run() {
+    console.log("JHS: Now RUNNING the InGame Controller")
+    await this._gameEventsListener.start();
   }
 }
 
-InGame.instance().run();
+InGame.instance().run().then();

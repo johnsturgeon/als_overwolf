@@ -72,39 +72,39 @@ export function matchEventFromEvent(event) {
     return return_event
 }
 
-export function gameStateFromInfo(info) {
+function safeStateFromValue(key: string, value) {
     let game_state = emptyGameState()
-    console.log("JHS: Getting gameStateFromInfo: " + JSON.stringify(info))
-    let initial_key = Object.keys(info)[0]
-    switch(initial_key) {
+    if(key in value) {
+        game_state.gamestate_type = key
+        game_state.gamestate_value = jsonOrString(value[key])
+    }
+    return game_state
+}
+
+export function gameStateFromInfo(info_key, info_value) {
+    let game_state = null
+    console.log("JHS: Getting gameStateFromInfo: " + JSON.stringify(info_key))
+    switch(info_key) {
         case 'game_info':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_state
-            // {"game_info":{"match_state":"active"}}
-            // {"game_info":{"match_state":"inactive"}}
-            game_state.gamestate_type = 'match_state'
-            game_state.gamestate_value = jsonOrString(info[initial_key]['match_state'])
+            // value: {"match_state":"active"}
+            // value: {"match_state":"inactive"}
+            game_state = safeStateFromValue('match_state', info_value)
             break
         case 'match_info':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_info
-            // {"match_info":{"game_mode":"#PL_CAN_TRIO"}}
-            let match_info = info['match_info']
-            if ('game_mode' in match_info) {
-                game_state.gamestate_type = 'game_mode'
-                game_state.gamestate_value = match_info['game_mode']
-            }
+            // value: {"game_mode":"#PL_CAN_TRIO"}
+            game_state = safeStateFromValue('game_mode', info_value)
             break
         case 'me':
             // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#me
             // {"me":{"name":"GoshDarnedHero"}}
-            let me_info = info['me']
-            if('name' in me_info) {
-                game_state.gamestate_type = 'name'
-                game_state.gamestate_value = jsonOrString(me_info['name'])
-            }
+            game_state = safeStateFromValue('name', info_value)
             // {"me":{"ultimate_cooldown":"{"ultimate_cooldown":"20"}"}}
             // ignore ultimate cooldown for now
             break
         default:
+            console.log("JHS: Ignoring info with key" + info_key)
             game_state = null
 
     }
@@ -178,7 +178,7 @@ export function sendMatchToServer(match) {
  * @param on_error - function to call if there is an error communicating with the server
  */
 export function isValidAPIKey(apiKey: string, on_valid: Function, on_not_valid: Function, on_error: Function) {
-    let url = kUrls.als_ow_user + "/ow_user"
+    let url = kUrls.als_ow_user
     let header = new Headers({
         'Content-Type': 'application/json',
         'X-Api-Key': apiKey
