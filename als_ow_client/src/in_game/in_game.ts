@@ -4,7 +4,7 @@ import {
   Match,
   matchEventFromEvent,
   matchEventFromInfo,
-  sendMatchToServer
+  sendEventToServer
 } from "../als";
 
 class InGame {
@@ -99,7 +99,7 @@ class InGame {
         this._currentMatch = new Match(this._gameState, pseudo_match_id)
       } else {
         this._currentMatch.endMatch()
-        sendMatchToServer(this._currentMatch)
+        sendEventToServer("game_ended", this._currentMatch)
         console.log("Sent match to server: " + JSON.stringify(this._currentMatch))
         this._currentMatch = null
       }

@@ -147,3 +147,5 @@ Here are all the different event types and their values
 {"message": "ERROR: Unauthorized"}
 ```
 
+## Sample Data (json)
+* [ow_game_ended_sample.json](ow_game_ended_sample.json)

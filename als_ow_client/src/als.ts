@@ -147,7 +147,7 @@ export function matchEventFromInfo(info) {
     return return_event
 }
 
-export function sendMatchToServer(match) {
+export function sendEventToServer(event_type, event_data) {
     // TODO: Re-comment this when I'm done testing
     let apiKey = localStorage.getItem( "apiKey" )
     // if (!apiKey) {
@@ -159,8 +159,12 @@ export function sendMatchToServer(match) {
         'Content-Type': 'application/json',
         'X-Api-Key': apiKey
     })
+    const payload = {
+        ow_event_type: event_type,
+        ow_event_data: event_data
+    }
     let initObject = {
-        method: 'POST', headers: header, body: JSON.stringify(match)
+        method: 'POST', headers: header, body: JSON.stringify(payload)
     }
     fetch(url, initObject)
         .then(r => r)
