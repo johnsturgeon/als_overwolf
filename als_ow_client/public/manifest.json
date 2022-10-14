@@ -55,16 +55,16 @@
     "game_targeting": {
       "type": "dedicated",
       "game_ids": [
-        21566
+        10798
       ]
     },
-    "game_events": [21566],
+    "game_events": [10798],
     "launch_events": [
       {
         "event": "GameLaunch",
         "event_data": {
           "game_ids": [
-            21566
+            10798
           ]
         },
         "start_minimized": false

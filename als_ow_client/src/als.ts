@@ -41,28 +41,37 @@ function emptyMatchEvent() {
     return {
         event_timestamp: Math.floor(Date.now() / 1000),
         event_type: null,
-        event_value: null
+        event_value: null,
+        event_match_id: null
     }
 }
 
-export function matchEventFromEvent(event) {
+export function matchEventFromEvent(match_id, event) {
     let return_event = emptyMatchEvent()
+    return_event.event_match_id = match_id
     switch(event['name']) {
-        case 'match_start':
-        case 'match_end':
-            // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#match_state
-            // {"name":"match_start","data":""}
-            return_event.event_type = 'match_state_event'
-            return_event.event_value = event['name']
-            break
-        case 'kill':
-        case 'knockdown':
-        case 'assist':
-            // https://overwolf.github.io/docs/api/overwolf-games-events-apex-legends#kill
-            // {"name":"kill","data":"{  "victimName": "`1[LuL] Jim #limbo"}"}
-            // {"name":"knockdown","data":"{  "victimName": "`1 Omar"}"}
-            // {"name":"assist","data":"{  "victimName": "Leila.qwerty",  "type": "elimination"}"}
-            // type == `elimination`, `knockdown`
+        // {"events":[{"name":"action_points","data":"Shot On Goal"}]}
+        // {"events":[{"name":"action_points","data":"Goal"}]}
+        // {"events":[{"name":"action_points","data":"First Touch"}]}
+        // {"events":[{"name":"action_points","data":"Center Ball"}]}
+        // {"events":[{"name":"action_points","data":"Pool Shot"}]}
+        // {"events":[{"name":"action_points","data":"Assist"}]}
+        // {"events":[{"name":"action_points","data":"Clear Goal"}]}
+        // {"events":[{"name":"action_points","data":"Demolish"}]}
+        // {"events":[{"name":"action_points","data":"Save"}]}
+        // {"events":[{"name":"action_points","data":"Epic Save"}]}
+        case 'action_points':
+        case 'playerJoined':
+        case 'playerLeft':
+        case 'rosterChange':
+        case 'score':
+        case 'matchEnd':
+        case 'teamGoal':
+        case 'goal':
+        case 'opposingTeamGoal':
+        case 'victory':
+        case 'defeat':
+        case 'death':
             return_event.event_type = event['name']
             return_event.event_value = jsonOrString(event['data'])
             break
@@ -147,24 +156,13 @@ export function matchEventFromInfo(info) {
     return return_event
 }
 
-export function sendEventToServer(event_type, event_data) {
-    // TODO: Re-comment this when I'm done testing
-    let apiKey = localStorage.getItem( "apiKey" )
-    // if (!apiKey) {
-    //     return // EARLY RETURN
-    // }
-    // TODO: Update to `als_ow` when api is ready
-    let url = kUrls.als_ow_event
+export function sendEventToServer(match_event) {
+    let url = kUrls.rl_event
     let header = new Headers({
-        'Content-Type': 'application/json',
-        'X-Api-Key': apiKey
+        'Content-Type': 'application/json'
     })
-    const payload = {
-        ow_event_type: event_type,
-        ow_event_data: event_data
-    }
     let initObject = {
-        method: 'POST', headers: header, body: JSON.stringify(payload)
+        method: 'POST', headers: header, body: JSON.stringify(match_event)
     }
     fetch(url, initObject)
         .then(r => r)

@@ -18,21 +18,13 @@ class InGame {
   }
 
   private _interestedFeatures = [
-    // 'damage',
-    // 'death',
-    // 'inventory',
-    'kill',
-    // 'kill_feed',
-    'location',
-    'match_info',
-    'match_state',
-    'match_summary',
-    'me',
-    // 'rank',
-    // 'revive',
-    // 'roster',
-    // 'team',
-    // 'victory'
+      'stats',
+      'roster',
+      'match',
+      'me',
+      'match_info',
+      `death`,
+      'game_info'
   ];
 
   private constructor() {
@@ -99,7 +91,10 @@ class InGame {
         this._currentMatch = new Match(this._gameState, pseudo_match_id)
       } else {
         this._currentMatch.endMatch()
-        sendEventToServer("game_ended", this._currentMatch)
+        sendEventToServer({
+          event_type: "uncaught",
+          payload: this._currentMatch
+        })
         console.log("Sent match to server: " + JSON.stringify(this._currentMatch))
         this._currentMatch = null
       }
@@ -111,16 +106,22 @@ class InGame {
 
   private onNewEvents(event) {
     for(let i=0; i<event['events'].length; i++) {
-      let match_event = matchEventFromEvent(event['events'][i])
+      let match_event = matchEventFromEvent(this._currentMatch.pseudo_match_id, event['events'][i])
       if (!match_event) {
-        console.warn("Got unknown event: " + JSON.stringify(event))
+        console.warn("Got unknown event (sending to server): " + JSON.stringify(event))
+        sendEventToServer({
+          event_type: "uncaught",
+          pseudo_match_id : this._currentMatch.pseudo_match_id,
+          payload : event
+        })
         return // EARLY RETURN
       }
       if(this._currentMatch) {
+        sendEventToServer(match_event)
         this._currentMatch.saveEvent(match_event)
-        console.log("New Event: " + JSON.stringify(event))
+        console.log("Sending Event: " + JSON.stringify(match_event))
       } else {
-        console.log("JHS: Didn't save event (no _currentMatch)" + JSON.stringify(event))
+        console.log("JHS: Didn't save event (no _currentMatch)" + JSON.stringify(match_event))
       }
     }
   }
